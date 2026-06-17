@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nailsbykhofo - Premium Nail Art</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafafa;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4e9 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .profile-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            overflow: hidden;
+        }
+
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .handle {
+            color: #ff6b9d;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ff6b9d;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .location-service {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .location-service p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .services-list {
+            font-weight: 600;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #222;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-container {
+            perspective: 1000px;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-frame {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .gallery-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.2);
+        }
+
+        .gallery-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ff6b9d;
+            background: white;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: #ff6b9d;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #ff6b9d;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .services-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fafafa;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #ff6b9d;
+            transform: translateY(-5px);
+            background: #fff5f7;
+        }
+
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .booking-btn {
+            display: inline-block;
+            background: white;
+            color: #ff6b9d;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .booking-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        .social-links {
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            color: #ff6b9d;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .section-title {
+                font-size: 1.6em;
+            }
+
+            .gallery-frame {
+                width: 280px;
+                height: 320px;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 1.5em;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8em;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .gallery-section {
+                padding: 40px 20px;
+            }
+
+            .services-section {
+                padding: 40px 20px;
+            }
+
+            .cta-section {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5em;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .gallery-frame {
+                width: 100%;
+                max-width: 280px;
+                height: 300px;
+            }
+
+            .stats {
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 1.3em;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-frame {
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .service-card {
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Nailsbykhofo</div>
+        <div class="tagline">@nailsbykhofo • Nails that make you feel expensive ✨</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-circle">💅</div>
+            <h1>Nailsbykhofo</h1>
+            <div class="handle">@nailsbykhofo</div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">1.7K</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">43.4K</div>
+                    <div class="stat-label">Likes</div>
+                </div>
+            </div>
+
+            <div class="location-service">
+                <p><span class="emoji">📍</span> <strong>Ikorodu, Lagos</strong></p>
+                <p class="services-list"><span class="emoji">💅</span> Acrylic • Gel • BIAB</p>
+                <p><span class="emoji">🎨</span> Custom Designs & Nail Art</p>
+                <p><span class="emoji">✨</span> Premium Quality Service</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="section-title">Our <span class="highlight">Portfolio</span></h2>
+        
+        <div class="gallery-container">
+            <div class="gallery-frame">
+                <img id="galleryImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='350'%3E%3Crect fill='%23f0f0f0' width='300' height='350'/%3E%3C/svg%3E" alt="Nail Art Design">
+            </div>
+        </div>
+
+        <div class="gallery-nav">
+            <button class="nav-btn" onclick="previousImage()">❮</button>
+            <button class="nav-btn" onclick="nextImage()">❯</button>
+        </div>
+
+        <div class="dots" id="dotsContainer"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💎</div>
+                <h3>Acrylic Nails</h3>
+                <p>Long-lasting acrylic manicures with stunning designs and finishes</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Gel Nails</h3>
+                <p>Beautiful gel polish that stays perfect for weeks with no chipping</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Custom Designs</h3>
+                <p>Personalized nail art and creative designs tailored to your style</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Get Your Nails Done?</h2>
+            <p>Book your appointment now and get nails that make you feel expensive!</p>
+            <a href="https://wa.me/2348162600015?text=Hi%20Nailsbykhofo%2C%20I%20want%20to%20book%20an%20appointment" class="booking-btn" target="_blank">
+                💬 Book on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/nailsbykhofo" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@nailsbykhofo" target="_blank">TikTok</a>
+            <a href="https://wa.me/2348162600015" target="_blank">WhatsApp</a>
+        </div>
+        <p>&copy; 2024 Nailsbykhofo. All rights reserved.</p>
+        <p style="margin-top: 10px; opacity: 0.7;">Built with ❤️ for premium nail art</p>
+    </footer>
+
+    <script>
+        // Image gallery data - using placeholder URLs
+        const galleryImages = [
+            {
+                title: "Red Glitter Design",
+                description: "Stunning red glitter nail art with crystal accents"
+            },
+            {
+                title: "Almond Nude",
+                description: "Classic almond shape with elegant nude finish"
+            },
+            {
+                title: "Silver Perfection",
+                description: "Metallic silver nails for that luxe look"
+            },
+            {
+                title: "Pink Tips",
+                description: "Beautiful pink ombre tips with glitter accent"
+            }
+        ];
+
+        let currentImageIndex = 0;
+
+        function initGallery() {
+            renderDots();
+            updateGallery();
+        }
+
+        function renderDots() {
+            const dotsContainer = document.getElementById('dotsContainer');
+            dotsContainer.innerHTML = '';
+            galleryImages.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToImage(index);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateGallery() {
+            const image = document.getElementById('galleryImage');
+            
+            // Color codes for different nail designs
+            const colors = ['#ff1493', '#daa520', '#c0c0c0', '#ffb6c1'];
+            const bgColor = colors[currentImageIndex];
+            
+            image.style.background = bgColor;
+            image.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustBrightness(bgColor, -20)} 100%)`;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentImageIndex);
+            });
+        }
+
+        function adjustBrightness(color, percent) {
+            const num = parseInt(color.replace("#",""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 +
+                (G<255?G<1?0:G:255)*0x100 +
+                (B<255?B<1?0:B:255))
+                .toString(16).slice(1);
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateGallery();
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateGallery();
+        }
+
+        function goToImage(index) {
+            currentImageIndex = index;
+            updateGallery();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') previousImage();
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', initGallery);
+    </script>
+</body>
+</html>
